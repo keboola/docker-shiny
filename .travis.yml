@@ -1,0 +1,18 @@
+sudo: required
+language: bash
+services:
+  - docker
+before_script:
+  - docker-compose build docker-shiny
+script: docker-compose run --rm --entrypoint sh -e KBC_TOKEN=$KBC_TOKEN docker-shiny /code/docker/run_tests.sh
+after_success:
+  - docker images
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./docker/deploy.sh
+  on:
+    tags: true  
+
+notifications:
+  slack: keboola:YWUNdgpM28koOToBjAs2b66E
