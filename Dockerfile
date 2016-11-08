@@ -34,10 +34,14 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/cen
     yum clean all && \
     rm -f version.txt shiny-server-${VER}-rh5-x86_64.rpm
 
+## Use s6
+RUN wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+
 EXPOSE 3838
 
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 
 RUN chmod u+x /usr/bin/shiny-server.sh
 
-CMD ["/usr/bin/shiny-server.sh"]
+CMD ["/init"]
