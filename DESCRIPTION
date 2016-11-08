@@ -1,0 +1,16 @@
+Package: keboola.shiny.docker
+Type: Package
+Title: Shinyapp Deployment Service
+Version: 0.1
+Date: 2016-06-02
+Author:  Marc Raiser
+Maintainer: Marc Raiser <marc@keboola.com>
+Description: Little service to deploy apps with KBC docker
+License: MIT + file LICENSE
+LazyData: TRUE
+Suggests:
+    testthat
+Imports:
+    methods,
+    keboola.r.docker.application
+RoxygenNote: 5.0.1

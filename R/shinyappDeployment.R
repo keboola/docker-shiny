@@ -1,5 +1,5 @@
-#' Extention of keboola.r.docker.application 
-#' Used to provide an interface between KBC and shinyapps.io
+#' Extension of keboola.r.docker.application 
+#' Used to deploy apps to a shiny server
 #' @import methods
 #' @import keboola.r.docker.application
 #' @import rsconnect
@@ -13,6 +13,7 @@ ShinyappDeployment <- setRefClass(
     contains = c("DockerApplication"),
     fields = list(
         action = 'character',
+        appDir = 'character',
         params = 'list'
     ),
     methods = list(
@@ -21,13 +22,7 @@ ShinyappDeployment <- setRefClass(
             .self$readConfig(args)
             action <<- .self$getAction()
             params <<- .self$getParameters()
-            # initialize shinyapps stuff here...
-            # call into shinyapps with keboola account credentials
-            rsconnect::setAccountInfo(
-                name=.self$params$account, 
-                token=.self$params$token, 
-                secret=.self$params$secret
-            )
+            appDir <<- .self$dataDir
         },
         
         run = function() {
@@ -40,27 +35,34 @@ ShinyappDeployment <- setRefClass(
                     .self$installPackages(.self$params$githubPackages, "github")
                 }
                 .self$deploy(.self$params$appName)
-            } else if (.self$params$command == "archive") {
-                .self$archive(.self$params$appName)
+            } else if (.self$params$command == "delete") {
+                .self$delete(.self$params$appName)
             }
         },
         
         list = function() {
-            rsconnect::deployments()
+            # list app dir contents
+            dir(.self$appDir)
         },
     
         deploy = function() {
             tryCatch({
-                rsconnect::deployApp(appDir="/home/app", appName=.self$params$appName)        
+                creds <- NULL
+                if (.self$params$password ) {
+                    creds <- git2r::cred_user_pass(.self$params$user, .self$params$password)    
+                } 
+                git2r::clone(.self$params$repository,.self$appDir)
             }, error = function(e) {
                 write(paste("Error deploying application:", e),stderr())
                 stop(paste("shinyapp.deployment deploy error:", e))
             })
         }, 
         
-        archive = function() {
+        delete = function() {
             tryCatch({
-                rsconnect::terminateApp(.self$params$appName)
+                # delete the app from the directory
+                unlink(.self$appDir)
+                # rsconnect::terminateApp(.self$params$appName)
             }, error = function(e) {
                 write(paste("Error archiving application", e), stderr())
                 stop(paste("shinyapp.deployment archive error:", e))

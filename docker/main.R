@@ -12,8 +12,8 @@ if (app$action == "list") {
 } else { 
     # perform default action -- run
     print("begin run")
-    if (app$params == "archive") {
-        app$archive() 
+    if (app$params == "delete") {
+        app$delete() 
     } else if (app$params == "deploy") {
         app$deploy()
     }
