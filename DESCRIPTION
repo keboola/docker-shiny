@@ -1,4 +1,4 @@
-Package: keboola.shiny.docker
+Package: keboola.docker.shiny
 Type: Package
 Title: Shinyapp Deployment Service
 Version: 0.1

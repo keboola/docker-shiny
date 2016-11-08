@@ -40,7 +40,7 @@ RUN wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/downloa
 
 EXPOSE 3838
 
-COPY shiny-server.sh /usr/bin/shiny-server.sh
+COPY docker/shiny-server.sh /usr/bin/shiny-server.sh
 
 RUN chmod u+x /usr/bin/shiny-server.sh
 

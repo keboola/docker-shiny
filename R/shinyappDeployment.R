@@ -2,7 +2,6 @@
 #' Used to deploy apps to a shiny server
 #' @import methods
 #' @import keboola.r.docker.application
-#' @import rsconnect
 #' @field action A string from the configuration that tells the app what to do. 
 #' The only possible action right now is list.  terminate and deploy are run asynchronously via the default run action. 
 #' @field params A list of parameters found in the configuration

@@ -12,4 +12,4 @@ if (nchar(Sys.getenv("KBC_DATADIR")) > 0) {
     KBC_DATADIR <- Sys.getenv("KBC_DATADIR")
 }
 
-test_check("keboola.shinyapp.deployment")
+test_check("keboola.docker.shiny")

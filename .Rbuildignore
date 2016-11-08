@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.*\.yml$
+\.idea
+\.dockerignore
+\.travis\.yml
+Dockerfile
+docker
