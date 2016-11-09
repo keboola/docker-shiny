@@ -24,7 +24,7 @@ COPY . /code/
 RUN R CMD javareconf
 
 # Install some commonly used R packages 
-RUN Rscript /code/init.R
+RUN Rscript /code/docker/init.R
 
 # Download and install shiny server
 RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/centos5.9/x86_64/VERSION -O "version.txt" && \
