@@ -9,5 +9,5 @@ devtools::install_github('rstudio/shinyapps', ref = "master")
 
 devtools::install_github('keboola/sapi-r-client', ref = "master")
 devtools::install_github('keboola/provisioning-r-client', ref = "master")
-devtools::install_github('keboola/redshift-r-client', ref = "master")
+devtools::install_github('keboola/backend-r-client', ref = "master")
 devtools::install_github('keboola/shiny-lib', ref = "0.2.2")
