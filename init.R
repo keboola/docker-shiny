@@ -5,7 +5,7 @@ library('devtools')
 
 # install the libraries required for shiny applications
 devtools::install_github('cloudyr/aws.signature', ref = "master")
-devtools::install_github('rstudio/shinyapps', ref = "master")
+devtools::install_github('rstudio/rsconnect', ref = "master")
 
 devtools::install_github('keboola/sapi-r-client', ref = "master")
 devtools::install_github('keboola/provisioning-r-client', ref = "master")

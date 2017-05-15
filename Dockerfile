@@ -1,4 +1,4 @@
-FROM quay.io/keboola/docker-base-r-packages:3.2.1-d
+FROM quay.io/keboola/docker-base-r-packages:3.2.1-k
 MAINTAINER Ondrej Popelka <ondrej.popelka@keboola.com>
 
 ENV DOCKER_CUSTOM_VERSION 0.0.1
